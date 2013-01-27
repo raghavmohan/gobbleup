@@ -1,0 +1,23 @@
+doctype html
+html
+  head
+    - if yield(:title).present?
+      =yield(:title)
+    - else
+      title Lunchify
+    =stylesheet_link_tag "application", media: "all"
+    =stylesheet_link_tag "bootstrap", media: "all"
+    =stylesheet_link_tag "datepicker", media: "all"
+    /=controller_stylesheet_link_tag
+    =javascript_include_tag "application"
+    =javascript_include_tag "bootstrap-datepicker"
+    =javascript_include_tag "bootstrap-timepicker"
+    =csrf_meta_tags
+  body
+    .page
+      .page_header
+        =link_to users_path do
+          img.left src=("/assets/logo.png")
+      .page_content
+        .content_box
+          =yield
