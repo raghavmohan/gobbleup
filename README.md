@@ -1,4 +1,2 @@
-lunchify
-========
-
-Pick lunch around you
+Gobbleup
+Gobble allows you to choose a restaurant based on your cravings. 
