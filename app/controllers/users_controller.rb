@@ -2,8 +2,8 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    require 'open-uri'
-    require 'json'
+   # require 'open-uri'
+   # require 'json'
     @users = User.all
 
     @lat = "43.0731"
