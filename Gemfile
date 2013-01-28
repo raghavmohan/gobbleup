@@ -39,12 +39,13 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
+gem 'slim', '~> 1.3.6'
 gem 'jquery-rails'
 gem 'omniauth-facebook'
 
 gem "geocoder"
 
- gem 'font-awesome-rails'
+gem 'font-awesome-rails'
 
 gem "omniauth-facebook"
 gem "bootstrap-sass"
