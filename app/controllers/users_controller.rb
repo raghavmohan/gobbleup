@@ -21,7 +21,7 @@ class UsersController < ApplicationController
 
     @authkey = "AIzaSyADf-Tno7s-r5aU0hY6-KDC2wapw8iKa4U"
     @mapsurl = "https://maps.googleapis.com/maps/api/place/search/json?location="
-    @restarauntsData = JSON.parse(open(@mapsurl+@lat+","+@long+"&radius="+@radius+"&key="+@authkey+"&sensor=true").read)
+    #@restarauntsData = JSON.parse(open(@mapsurl+@lat+","+@long+"&radius="+@radius+"&key="+@authkey+"&sensor=true").read)
     @restarauntsData = ""
  
 
