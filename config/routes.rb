@@ -1,5 +1,6 @@
 Lunchify::Application.routes.draw do
   root to: 'users#index'
+
   resources :users
 
   # The priority is based upon order of creation:
