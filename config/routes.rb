@@ -2,6 +2,7 @@ Lunchify::Application.routes.draw do
   root to: 'users#index'
 
   resources :users
+    match 'getNearbyRestaraunts', to: 'users#getNearbyRestaraunts'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

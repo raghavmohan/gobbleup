@@ -2,13 +2,21 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-   # require 'open-uri'
-   # require 'json'
     @users = User.all
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @users }
+    end
+  end
+
+  def getNearbyRestaraunts
+    require 'open-uri'
 
     @lat = "43.0731"
     @long = "-89.4011"
-    @radius = "100"
+    @radius = "1000"
+    @limit = "50"
     unless params[:lat].nil?
       @lat = params[:lat]
     end
@@ -18,13 +26,29 @@ class UsersController < ApplicationController
     unless params[:radius].nil?
       @radius = params[:radius]
     end
+    unless params[:limit].nil?
+      @limit = params[:limit]
+    end
 
     @authkey = "AIzaSyADf-Tno7s-r5aU0hY6-KDC2wapw8iKa4U"
-    @mapsurl = "https://maps.googleapis.com/maps/api/place/search/json?location="
+    @gmapsurl = "https://maps.googleapis.com/maps/api/place/search/json?location="
+    @client_id = "131364997031342"
+    @client_secret = "44c516fb668a71852347686ec508cbef" 
+    @fburl = "https://graph.facebook.com/"
+    fbtokenurl = @fburl+"oauth/access_token?client_id="+@client_id+"&client_secret="+@client_secret+"&grant_type=client_credentials"
     #@restarauntsData = JSON.parse(open(@mapsurl+@lat+","+@long+"&radius="+@radius+"&key="+@authkey+"&sensor=true").read)
-    @restarauntsData = ""
- 
 
+    @fbaccess_token = open(URI::escape(fbtokenurl)).read
+    @fbmapsurl = "https://graph.facebook.com/search?q=food&type=place&"+@fbaccess_token+"&center="+@lat+","+@long+"&distance="+@radius+"&limit="+@limit
+
+    @restarauntsData = JSON.parse(open(URI::escape(@fbmapsurl)).read)
+    @restarauntsData = @restarauntsData["data"]
+
+    @restarauntsData.each do |restaraunt|
+      restaraunt["fb_pic"] = URI::escape(@fburl+restaraunt["id"]+"/picture?type=large")
+      restaraunt["fb_pic_logo"] = URI::escape(@fburl+restaraunt["id"]+"/picture?type=square")
+    end
+      
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @users }
@@ -101,13 +125,6 @@ class UsersController < ApplicationController
       format.html { redirect_to users_url }
       format.json { head :no_content }
     end
-  end
-
-  def getNearbyRestaraunts
-    @authkey = "AIzaSyADf-Tno7s-r5aU0hY6-KDC2wapw8iKa4U"
-    @mapsurl = "https://maps.googleapis.com/maps/api/place/search/json?location="
-    @restarauntsData = JSON.parse(open(@mapsurl+params[:lat]+","+params[:long]+"&radius="+params[:radius]+"&key="+@authkey+"&sensor=true").read)
-
   end
 
 

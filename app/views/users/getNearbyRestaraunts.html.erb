@@ -1,0 +1,9 @@
+<%= @restarauntsData.first %>
+<% @restarauntsData.each do |restaraunt| %>
+  <br/>
+<div class="place" data-fbid="<%= restaraunt["id"] %>" data-lat"<%= restaraunt["location"]["latitude"] %>" 
+  data-long="<%= restaraunt["location"]["longitude"] %>"   data-fb-pic="<%= restaraunt["fb_pic"] %>" >
+  <a href = "#"><img src ="<%= restaraunt["fb_pic_logo"]%>" class="place-logo"/><%=restaraunt["name"]  %></a>
+</div>
+<% end %>
+
