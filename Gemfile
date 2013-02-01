@@ -48,7 +48,10 @@ gem "geocoder"
 gem 'font-awesome-rails'
 
 gem "omniauth-facebook"
-gem "bootstrap-sass"
+#gem "bootstrap-sass"
+gem "therubyracer"
+gem "less-rails"
+gem "twitter-bootstrap-rails"
 #
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
