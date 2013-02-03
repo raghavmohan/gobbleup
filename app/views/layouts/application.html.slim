@@ -1,10 +1,13 @@
 doctype html
 html
   head
-    - if yield(:title).present?
-      =yield(:title)
-    - else
-      title GobbleUp
+    meta charset="utf-8"
+    meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"
+    meta name="viewport" content="width=device-width, initial-scale=1.0"
+  - if yield(:title).present?
+    =yield(:title)
+  - else
+    title GobbleUp
     =stylesheet_link_tag "application", media: "all"
     =stylesheet_link_tag "bootstrap", media: "all"
     /=stylesheet_link_tag "datepicker", media: "all"
@@ -13,10 +16,27 @@ html
     /=javascript_include_tag "bootstrap-datepicker"
     =csrf_meta_tags
   body
-    .page
-      .page_header
-        =link_to users_path do
-          img.left src=("/assets/logo.png") style="height:5%; width:5%;"
-      .page_content
-        .content_box
+    .navbar.navbar-fluid-top
+      .navbar-inner
+        .container-fluid
+          a.btn.btn-navbar data-target=".nav-collapse" data-toggle="collapse"
+          .logo
+            a.brand href="#" GobbleUP
+            img src=("/assets/logo.jpg") style="height:5%; width:5%;"
+  .container-fluid
+    .row-fluid
+      .span3
+        .well.sidebar-nav
+          .nav.nav-list
+            ul
+              li class="nav-header"
+              Sidebar
+              li
+                = link_to "Link1", "/path1"
+              li
+                = link_to "Link1", "/path1"
+              li
+                = link_to "Link1", "/path1"
+        .span9
+          =bootstrap_flash
           =yield
