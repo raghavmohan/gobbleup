@@ -10,6 +10,12 @@ class UsersController < ApplicationController
     end
   end
 
+  def login
+    if current_user != nil
+      redirect_to :controller => 'users', :action => 'index', :user_id => current_user.id
+    end	
+  end
+
   def getNearbyRestaraunts
     require 'open-uri'
 

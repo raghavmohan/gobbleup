@@ -2,7 +2,15 @@ Lunchify::Application.routes.draw do
   root to: 'users#index'
 
   resources :users
-    match 'getNearbyRestaraunts', to: 'users#getNearbyRestaraunts'
+  match 'login', to: 'users#login', as: 'users_login'
+
+	match 'auth/:provider/callback', to: 'sessions#create'
+	match 'auth/failure', to: redirect('/')
+	match 'signout', to: 'sessions#destroy', as: 'signout'
+
+  match 'getNearbyRestaraunts', to: 'users#getNearbyRestaraunts'
+
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
