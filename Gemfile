@@ -13,6 +13,7 @@ group :development do
   gem 'guard-rails'
   gem 'guard-rspec', '>= 2.1.1'
   gem 'guard-livereload'
+  gem 'zeus'
 end
 
 group :development, :test do

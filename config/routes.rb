@@ -9,6 +9,7 @@ Lunchify::Application.routes.draw do
 	match 'signout', to: 'sessions#destroy', as: 'signout'
 
   match 'getNearbyRestaraunts', to: 'users#getNearbyRestaraunts'
+  match 'show_restaraunt', to: 'users#show_restaraunt'
 
 
   # The priority is based upon order of creation:
