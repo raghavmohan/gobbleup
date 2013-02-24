@@ -3,4 +3,4 @@ function GetLocation(location) {
 }
 
 if (window.location.pathname == '/')
-  navigator.geolocation.getCurrentPosition(GetLocation);
+  //navigator.geolocation.getCurrentPosition(GetLocation);

@@ -1,0 +1,12 @@
+- if current_user == nil
+  .container-fluid.pull-right style="padding-top: 2px"
+    .navbar-text
+      /a href="#{{user_omniauth_authorize_path(:facebook)}}"
+      a href="auth/facebook"
+        img src="/assets/facebook-login.png"- if user_signed_in?
+- else
+   .container-fluid.pull-right
+    p.navbar-text
+      ' Welcome #{current_user.name} | 
+      a href="signout" Sign out
+

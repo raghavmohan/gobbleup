@@ -10,33 +10,9 @@ html
     title GobbleUp
     =stylesheet_link_tag "application", media: "all"
     =stylesheet_link_tag "bootstrap", media: "all"
-    /=stylesheet_link_tag "datepicker", media: "all"
-    /=controller_stylesheet_link_tag
     =javascript_include_tag "application"
-    /=javascript_include_tag "bootstrap-datepicker"
     =csrf_meta_tags
   body
-    .navbar.navbar-fluid-top
-      .navbar-inner
-        .container-fluid
-          a.btn.btn-navbar data-target=".nav-collapse" data-toggle="collapse"
-          .logo
-            a.brand href="#" GobbleUP
-            img src=("/assets/logo.jpg") style="height:5%; width:5%;"
-  .container-fluid
-    .row-fluid
-      .span3
-        /.well.sidebar-nav
-          .nav.nav-list
-            /ul
-              /li class="nav-header"
-              /Sidebar
-              /li
-                = link_to "Link1", "/path1"
-              /li
-                = link_to "Link1", "/path1"
-              /li
-                = link_to "Link1", "/path1"
-        .span9
-          =bootstrap_flash
-          =yield
+    = render :partial => 'layouts/navbar'
+    .container
+      = yield
