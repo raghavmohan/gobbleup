@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  attr_accessible :content, :latitude, :longitude, :name, :title
+  attr_accessible :latitude, :longitude, :name, :email
   attr_accessor :friends
   has_and_belongs_to_many :events
 

@@ -35,6 +35,16 @@ class UsersController < ApplicationController
     redirect_to(website) 
   end
 
+
+  def getUserFriends(user)
+    if user == nil
+      return user
+    else
+      user.friends=JSON.parse(open(URI::escape(@@fburl+current_user.uid+"?fields=id,name,friends&access_token="+current_user.oauth_token)).read)["friends"]["data"]
+    end
+    return user
+  end
+
   def getFriends
     if current_user==nil
       redirect_to :root
@@ -87,7 +97,7 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     @user = User.find(params[:id])
-
+    @user = getUserFriends(@user)
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @user }

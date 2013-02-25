@@ -53,6 +53,7 @@ gem "omniauth-facebook"
 gem "therubyracer"
 gem "less-rails"
 gem "twitter-bootstrap-rails"
+gem 'simple_form'
 
 #
 # To use ActiveModel has_secure_password
