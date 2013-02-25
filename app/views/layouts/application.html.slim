@@ -8,10 +8,25 @@ html
     =yield(:title)
   - else
     title GobbleUp
-    =stylesheet_link_tag "application", media: "all"
-    =stylesheet_link_tag "bootstrap", media: "all"
-    =javascript_include_tag "application"
-    =csrf_meta_tags
+  =stylesheet_link_tag "application", media: "all"
+  =stylesheet_link_tag "bootstrap", media: "all"
+  =stylesheet_link_tag "style", media: "all"
+  =stylesheet_link_tag "jquery-ui", media: "all"
+  =javascript_include_tag "application"
+  =javascript_include_tag "jquery-1.9.1"
+  =javascript_include_tag "jquery-ui"
+  javascript:
+    $(function(){
+      $( "#slider" ).slider({
+        change: function( event, ui ) {
+          $("#radius").val((ui.value));
+        }
+      });
+    });      
+    //$(function() {
+    //  console.log($( "#slider" ).slider("values"));
+    //});
+  =csrf_meta_tags
   body
     = render :partial => 'layouts/navbar'
     .container

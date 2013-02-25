@@ -1,12 +1,10 @@
-<p>hello world </p>
-<% form_tag '/getLocations' do %>
-  <%=label_tag 'name' %>
-<%=text_field_tag 'name'%>
+<div id="slider" style="border:1px solid #c6c1b8;" class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all"><a href="#" class="ui-slider-handle ui-state-default ui-corner-all" style="left: 0%;"></a></div>
+<%= form_tag "/getLocations", :class=>"simple_form" do %>
+  <%= text_field_tag "lat", "Latitude" %>
+  <%= text_field_tag "long", "Longitude" %>
+  <%= text_field_tag "radius", "Radius (m)", :id=>"radius" %>
+  <%= text_field_tag "limit", "Limit" %>
+  <%= submit_tag "Go" %>
+<% end %>
 
-<%=label_tag 'phone' %>
-<%=text_field_tag 'phone'%>
 
-<div>
-  <%= submit_tag 'Save' %>
-</div>
-<% end -%>
