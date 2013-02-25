@@ -49,8 +49,8 @@ class UsersController < ApplicationController
     if current_user==nil
       redirect_to :root
     else 
-    #current_user.friends=URI::escape(@@fburl+current_user.uid+"?fields=id,name,friends&access_token="+current_user.oauth_token)
-    current_user.friends=JSON.parse(open(URI::escape(@@fburl+current_user.uid+"?fields=id,name,friends&access_token="+current_user.oauth_token)).read)["friends"]["data"]
+      #current_user.friends=URI::escape(@@fburl+current_user.uid+"?fields=id,name,friends&access_token="+current_user.oauth_token)
+      current_user.friends=JSON.parse(open(URI::escape(@@fburl+current_user.uid+"?fields=id,name,friends&access_token="+current_user.oauth_token)).read)["friends"]["data"]
     end
   end
 
@@ -85,7 +85,7 @@ class UsersController < ApplicationController
         restaraunt["website"] = "#"
       end
     end
-      
+
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @users }
@@ -97,10 +97,15 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     @user = User.find(params[:id])
-    @user = getUserFriends(@user)
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @user }
+    if @user.phone_number != nil
+
+      @user = getUserFriends(@user)
+      respond_to do |format|
+        format.html # show.html.erb
+        format.json { render json: @user }
+      end
+    else
+      redirect_to :action=>:edit, :id => @user.id
     end
   end
 
