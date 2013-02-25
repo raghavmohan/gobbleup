@@ -1,4 +1,6 @@
 Lunchify::Application.routes.draw do
+  resources :events
+
   root to: 'users#index'
 
   resources :users

@@ -9,6 +9,7 @@ class UsersController < ApplicationController
   @@client_id = "131364997031342"
   @@client_secret = "44c516fb668a71852347686ec508cbef" 
   @@fbaccess_token =""
+  require 'open-uri'
 
 
   def index
@@ -35,15 +36,15 @@ class UsersController < ApplicationController
   end
 
   def getFriends
-    if current_user == nil
+    if current_user==nil
       redirect_to :root
+    else 
+    #current_user.friends=URI::escape(@@fburl+current_user.uid+"?fields=id,name,friends&access_token="+current_user.oauth_token)
+    current_user.friends=JSON.parse(open(URI::escape(@@fburl+current_user.uid+"?fields=id,name,friends&access_token="+current_user.oauth_token)).read)["friends"]["data"]
     end
-    current_user.friends=JSON.parse(open(URI::escape(@@fburl+current_user.uid+"?fields=id,name,friends&access_token="+current_user.oauth_token)).read)["friends"]
   end
 
   def getNearbyRestaraunts
-    require 'open-uri'
-
     @lat = "43.0731"
     @long = "-89.4011"
     @radius = "1000"

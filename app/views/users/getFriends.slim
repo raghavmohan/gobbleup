@@ -1,1 +1,5 @@
-= current_user.friends
+- current_user.friends.each do |friend|
+  .profile-friend
+    img src="https://graph.facebook.com/#{friend["id"]}/picture"
+  end
+
