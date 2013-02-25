@@ -1,7 +1,8 @@
 Lunchify::Application.routes.draw do
   resources :events
 
-  root to: 'users#index'
+  #root to: 'users#index'
+  root to: 'users#login'
 
   resources :users
     match 'getFriends', to: 'users#getFriends'

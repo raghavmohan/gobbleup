@@ -1,9 +1,0 @@
-<% if current_user == nil %>
-
-  <div class="login">
-  <%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in" %>
-  <a href="/auth/facebook" rel="external">
-    <img id="loginImage" src="/assets/facebook-login.png">
-  </a>
-</div>
-<% end %>
