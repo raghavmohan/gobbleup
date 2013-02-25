@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130225085207) do
+ActiveRecord::Schema.define(:version => 20130225095120) do
 
   create_table "events", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(:version => 20130225085207) do
     t.string   "oauth_token"
     t.datetime "oauth_expires_at"
     t.string   "email"
+    t.string   "phone_number"
   end
 
   create_table "users_events", :id => false, :force => true do |t|

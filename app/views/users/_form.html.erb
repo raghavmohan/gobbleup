@@ -1,7 +1,8 @@
 <%= simple_form_for @user do |f| %>
   <img src="https://graph.facebook.com/<%=@user.uid%>/picture">
-  <br/>
-  <%= f.input :name, label: 'Name' %>
-  <%= f.input :email, placeholder: 'user@domain.com' %>
-  <%= f.button :submit %>
+<br/>
+<%= f.input :name, label: 'Name' %>
+<%= f.input :email, label: '<i class="icon-envelope icon-large"></i>', placeholder: 'user@domain.com' %>
+<%= f.input :phone_number, label: '<i class="icon-phone icon-large"></i>', placeholder: '(XXX)-XXX-XXXX' %>
+<%= f.button :submit %>
 <% end %>
