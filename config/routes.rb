@@ -12,7 +12,7 @@ Lunchify::Application.routes.draw do
 	match 'auth/failure', to: redirect('/')
 	match 'signout', to: 'sessions#destroy', as: 'signout'
 
-  match 'getNearbyRestaraunts', to: 'users#getNearbyRestaraunts'
+  match 'getLocations', to: 'users#getLocations'
   match 'show_restaraunt', to: 'users#show_restaraunt'
 
 

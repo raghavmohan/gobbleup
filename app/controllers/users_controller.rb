@@ -54,7 +54,7 @@ class UsersController < ApplicationController
     end
   end
 
-  def getNearbyRestaraunts
+  def getLocations
     @lat = "43.0731"
     @long = "-89.4011"
     @radius = "1000"

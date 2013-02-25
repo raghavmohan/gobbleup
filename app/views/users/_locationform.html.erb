@@ -1,0 +1,12 @@
+<p>hello world </p>
+<% form_tag '/getLocations' do %>
+  <%=label_tag 'name' %>
+<%=text_field_tag 'name'%>
+
+<%=label_tag 'phone' %>
+<%=text_field_tag 'phone'%>
+
+<div>
+  <%= submit_tag 'Save' %>
+</div>
+<% end -%>
