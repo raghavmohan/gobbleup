@@ -2,6 +2,7 @@ Lunchify::Application.routes.draw do
   root to: 'users#index'
 
   resources :users
+    match 'getFriends', to: 'users#getFriends'
   match 'login', to: 'users#login', as: 'users_login'
 
 	match 'auth/:provider/callback', to: 'sessions#create'

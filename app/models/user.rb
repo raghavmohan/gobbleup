@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   attr_accessible :content, :latitude, :longitude, :name, :title
+  attr_accessor :friends
 
   def self.from_omniauth(auth)
     where(auth.slice(:provider, :uid)).first_or_initialize.tap do |user|

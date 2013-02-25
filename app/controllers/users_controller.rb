@@ -2,6 +2,14 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
 
+  ## This should be in Application Controller...
+  @@fburl = "https://graph.facebook.com/"
+  @@authkey = "AIzaSyADf-Tno7s-r5aU0hY6-KDC2wapw8iKa4U"
+  @@gmapsurl = "https://maps.googleapis.com/maps/api/place/search/json?location="
+  @@client_id = "131364997031342"
+  @@client_secret = "44c516fb668a71852347686ec508cbef" 
+  @@fbaccess_token =""
+
 
   def index
     @users = User.all
@@ -22,9 +30,15 @@ class UsersController < ApplicationController
     unless params[:fbid].nil?
       fbid=params[:fbid]
     end
-    @fburl = "https://graph.facebook.com/"
-    website = JSON.parse(open(URI::escape(@fburl+fbid+"?fields=website")).read)["website"]
+    website = JSON.parse(open(URI::escape(@@fburl+fbid+"?fields=website")).read)["website"]
     redirect_to(website) 
+  end
+
+  def getFriends
+    if current_user == nil
+      redirect_to :root
+    end
+    current_user.friends=JSON.parse(open(URI::escape(@@fburl+current_user.uid+"?fields=id,name,friends&access_token="+current_user.oauth_token)).read)["friends"]
   end
 
   def getNearbyRestaraunts
@@ -46,31 +60,19 @@ class UsersController < ApplicationController
     unless params[:limit].nil?
       @limit = params[:limit]
     end
-    @authkey = "AIzaSyADf-Tno7s-r5aU0hY6-KDC2wapw8iKa4U"
-    @gmapsurl = "https://maps.googleapis.com/maps/api/place/search/json?location="
-    @client_id = "131364997031342"
-    @client_secret = "44c516fb668a71852347686ec508cbef" 
-    @fburl = "https://graph.facebook.com/"
-    @fbaccess_token =""
-
-    fbtokenurl = @fburl+"oauth/access_token?client_id="+@client_id+"&client_secret="+@client_secret+"&grant_type=client_credentials"
-    #@restarauntsData = JSON.parse(open(@mapsurl+@lat+","+@long+"&radius="+@radius+"&key="+@authkey+"&sensor=true").read)
-
-    @fbaccess_token = open(URI::escape(fbtokenurl)).read
-    #@fbmapsurl = "https://graph.facebook.com/search?q=food&type=place&"+@fbaccess_token+"&center="+@lat+","+@long+"&distance="+@radius+"&limit="+@limit
-    @fbmapsurl = "https://graph.facebook.com/search?q=food&type=place&"+@fbaccess_token+"&center="+@lat+","+@long+"&distance="+@radius+"&limit="+@limit
+    fbtokenurl = @@fburl+"oauth/access_token?client_id="+@@client_id+"&client_secret="+@@client_secret+"&grant_type=client_credentials"
+    @@fbaccess_token = open(URI::escape(fbtokenurl)).read
+    @fbmapsurl = "https://graph.facebook.com/search?q=food&type=place&"+@@fbaccess_token+"&center="+@lat+","+@long+"&distance="+@radius+"&limit="+@limit
 
     @restarauntsData = JSON.parse(open(URI::escape(@fbmapsurl)).read)
     @restarauntsData = @restarauntsData["data"]
 
     @restarauntsData.each do |restaraunt|
-      restaraunt["fb_pic"] = URI::escape(@fburl+restaraunt["id"]+"/picture?type=large")
-      restaraunt["fb_pic_logo"] = URI::escape(@fburl+restaraunt["id"]+"/picture?type=square")
-      #restaraunt["website"] = JSON.parse(open(URI::escape(@fburl+restaraunt["id"]+"?fields=website")).read)["website"]
+      restaraunt["fb_pic"] = URI::escape(@@fburl+restaraunt["id"]+"/picture?type=large")
+      restaraunt["fb_pic_logo"] = URI::escape(@@fburl+restaraunt["id"]+"/picture?type=square")
       if restaraunt["website"].nil?
         restaraunt["website"] = "#"
       end
-      #restaraunt["website"] = restaraunt["data"]["website"]
     end
       
     respond_to do |format|
