@@ -37,7 +37,7 @@ class EventsController < ApplicationController
       @potential_users.each do |u|
         t = User.where("uid"=>u["id"]).first
         unless t.nil?
-          @checkbox << [u["name"], '<img src="https://graph.facebook.com/#{u["id"]}/picture', t.id]
+          @checkbox << [u["name"], '<img src="https://graph.facebook.com/'+u["id"]+'/picture"', t.id]
         end
         @checkbox.shift
       end

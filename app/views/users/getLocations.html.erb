@@ -1,4 +1,3 @@
-<% @restarauntsData.first %>
 <% @restarauntsData.each do |restaraunt| %>
   <br/>
 <div class="place" data-fbid="<%= restaraunt["id"] %>" data-lat"<%= restaraunt["location"]["latitude"] %>" 
@@ -7,4 +6,3 @@
   <!--<a class="restaraunt" href="/show_restaraunt?fbid=<%= restaraunt["id"] %>"  target="_blank"><img src ="<%= restaraunt["fb_pic_logo"]%>" class="place-logo"/><%=restaraunt["name"]  %></a> -->
 </div>
 <% end %>
-<div class="iframe-holder"></div>

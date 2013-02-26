@@ -1,12 +1,15 @@
 - if current_user == nil
   .container-fluid.pull-right style="padding-top: 2px"
     .navbar-text
-      /a href="#{{user_omniauth_authorize_path(:facebook)}}"
       a href="auth/facebook"
         img src="/assets/fb-login-button.png"
 - else
-   .container-fluid.pull-right
-    p.navbar-text
-      ' Welcome #{current_user.name} | 
-      a href="/signout" Sign out
-
+  .container-fluid.pull-right
+    ul.nav
+      li
+        img src="https://graph.facebook.com/#{current_user.uid}/picture"
+      li
+        =link_to raw('<i class="icon-cog icon-3x"></i>'), :controller => :users, :action => :edit, :id=>current_user.id
+      li
+        a href="/signout"
+          i.icon-signout.icon-3x

@@ -1,13 +1,12 @@
+<%#= @potential_users %>
 <%= simple_form_for @event do |f| %>
   <div>
   <% unless @location.nil? %>
   <% end %> 
-  </div>
+</div>
 <% @event.location = @location["name"] %>
 <%= f.input :location, :as => :hidden, :input_html => { :value =>@event.location }%>
-<%= f.association :users, :collection => @checkbox.map{|user| [user.first, user.last]}, :as => :check_boxes %>
-  <br/>
-<%#= f.association :users, :collection => @checkbox.map{|user| [user.second, user.last]}, :as => :check_boxes %>
-<%#= f.input :users, as: :check_boxes, collection: [['Day 1', 1], ['Day 2', 2]] %>
+<%= f.association :users, :collection => @checkbox.map{|user| [raw(user.second), user.last]}, :as => :check_boxes %>
+<br/>
 <%= f.button :submit %>
 <% end %>

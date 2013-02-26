@@ -20,6 +20,8 @@ html
       $( "#slider" ).slider({
         change: function( event, ui ) {
           $("#radius").val((1000*ui.value));
+          console.log($("#radiusValue"));
+          $("#radiusValue").text((ui.value+" miles"));
         }
       });
     });      

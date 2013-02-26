@@ -23,8 +23,8 @@ class UsersController < ApplicationController
 
   def login
     if current_user != nil
-      redirect_to :controller => 'users', :action => 'index', :user_id => current_user.id
-    end	
+      redirect_to :controller=>"users", :action=>"show", :id => current_user.id
+    end
   end
 
   def show_restaraunt
@@ -49,16 +49,16 @@ class UsersController < ApplicationController
     if current_user==nil
       redirect_to :root
     else 
-      #current_user.friends=URI::escape(@@fburl+current_user.uid+"?fields=id,name,friends&access_token="+current_user.oauth_token)
       current_user.friends=JSON.parse(open(URI::escape(@@fburl+current_user.uid+"?fields=id,name,friends&access_token="+current_user.oauth_token)).read)["friends"]["data"]
     end
   end
 
   def getLocations
-    @lat = "43.0731"
-    @long = "-89.4011"
+    @lat = "43.074955443048"
+    @long = "-89.396645675076"
     @radius = "1000"
-    @limit = "50"
+    @limit = "10"
+    @genre = "mexican"
     unless params[:lat].nil?
       @lat = params[:lat]
     end
@@ -71,9 +71,13 @@ class UsersController < ApplicationController
     unless params[:limit].nil?
       @limit = params[:limit]
     end
+    unless params[:genre].nil?
+      @genre = params[:genre]
+    end
+    require 'open-uri'
     fbtokenurl = @@fburl+"oauth/access_token?client_id="+@@client_id+"&client_secret="+@@client_secret+"&grant_type=client_credentials"
     @@fbaccess_token = open(URI::escape(fbtokenurl)).read
-    @fbmapsurl = "https://graph.facebook.com/search?q=food&type=place&"+@@fbaccess_token+"&center="+@lat+","+@long+"&distance="+@radius+"&limit="+@limit
+    @fbmapsurl = "https://graph.facebook.com/search?q=#{@genre}&type=place&"+@@fbaccess_token+"&center="+@lat+","+@long+"&distance="+@radius+"&limit="+@limit
 
     @restarauntsData = JSON.parse(open(URI::escape(@fbmapsurl)).read)
     @restarauntsData = @restarauntsData["data"]
@@ -85,12 +89,10 @@ class UsersController < ApplicationController
         restaraunt["website"] = "#"
       end
     end
-
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @users }
     end
-
   end
 
   # GET /users/1
