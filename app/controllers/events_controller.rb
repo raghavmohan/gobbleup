@@ -1,6 +1,9 @@
 class EventsController < ApplicationController
   # GET /events
   # GET /events.json
+  require 'open-uri'
+
+  @@fburl="https://graph.facebook.com/"
   def index
     @events = Event.all
 
@@ -29,6 +32,21 @@ class EventsController < ApplicationController
     else
       @event = Event.new
       @event.creator_id = current_user.id
+      @potential_users = current_user.getFriends
+      @checkbox = [[]]
+      @potential_users.each do |u|
+        t = User.where("uid"=>u["id"]).first
+        unless t.nil?
+          @checkbox << [u["name"], '<img src="https://graph.facebook.com/#{u["id"]}/picture', t.id]
+        end
+        @checkbox.shift
+      end
+
+      @location = []
+      unless params[:fbid].nil?
+        @location = JSON.parse(open(URI::escape(@@fburl+params[:fbid]+"")).read)
+      end
+
       respond_to do |format|
         format.html # new.html.erb
         format.json { render json: @event }
@@ -51,6 +69,10 @@ class EventsController < ApplicationController
       @event.creator = current_user
       respond_to do |format|
         if @event.save
+          message = current_user.name+" has invited you, to join them at "+@event.location+"!"
+          @event.users.each do |u|
+            PhoneGateway.send_text_message(u.phone_number, message)
+          end
           format.html { redirect_to @event, notice: 'Event was successfully created.' }
           format.json { render json: @event, status: :created, location: @event }
         else

@@ -1,5 +1,16 @@
-<h1>New event</h1>
+<% unless @location.nil? %>
+  <img src="https://graph.facebook.com/<%=@location['id']%>/picture" />
+  <%= @location["name"] %>
+  <br/>
+  <!-- <img src="<%= @location["cover"]["source"] %>"/> -->
+  <br/>
+  <i class="icon-map-marker icon-large"></i>
+  <% address=@location["location"]["street"] +","+@location["location"]["city"]+","+@location["location"]["state"]+","+@location["location"]["country"]+","+@location["location"]["zip"] %>
+  <%= address %>
+  <br/>
+  <br/>
+  <iframe width="40%" height="150" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=<%=address %>&amp;aq=0&amp;oq=little&amp;z=12&amp;iwloc=A&amp;output=embed"></iframe>
+<% end %> 
 
 <%= render 'form' %>
-
 <%= link_to 'Back', events_path %>

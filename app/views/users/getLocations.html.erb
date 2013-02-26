@@ -1,13 +1,10 @@
-<%= @fbmapsurl %>
 <% @restarauntsData.first %>
 <% @restarauntsData.each do |restaraunt| %>
-
-
   <br/>
 <div class="place" data-fbid="<%= restaraunt["id"] %>" data-lat"<%= restaraunt["location"]["latitude"] %>" 
   data-long="<%= restaraunt["location"]["longitude"] %>"   data-fb-pic="<%= restaraunt["fb_pic"] %>" >
-  <!-- <a href = "http://<%= restaraunt["website"] %>" target="frame<%= restaraunt["id"] %>"><img src ="<%= restaraunt["fb_pic_logo"]%>" class="place-logo"/><%=restaraunt["name"]  %></a> -->
-  <a href="/show_restaraunt?fbid=<%= restaraunt["id"] %>"  target="_blank"><img src ="<%= restaraunt["fb_pic_logo"]%>" class="place-logo"/><%=restaraunt["name"]  %></a>
+  <a class="restaraunt" href="events/new?fbid=<%= restaraunt["id"] %>"><img src ="<%= restaraunt["fb_pic_logo"]%>" class="place-logo"/><%=restaraunt["name"]  %></a>
+  <!--<a class="restaraunt" href="/show_restaraunt?fbid=<%= restaraunt["id"] %>"  target="_blank"><img src ="<%= restaraunt["fb_pic_logo"]%>" class="place-logo"/><%=restaraunt["name"]  %></a> -->
 </div>
 <% end %>
-
+<div class="iframe-holder"></div>

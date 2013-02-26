@@ -54,6 +54,8 @@ gem "therubyracer"
 gem "less-rails"
 gem "twitter-bootstrap-rails"
 gem 'simple_form'
+gem 'twilio-ruby'
+
 
 #
 # To use ActiveModel has_secure_password

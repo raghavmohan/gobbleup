@@ -17,4 +17,9 @@ class User < ActiveRecord::Base
       user.save!
     end
   end
+
+  def getFriends
+    return JSON.parse(open(URI::escape("https://graph.facebook.com/"+self.uid+"?fields=id,name,friends&access_token="+self.oauth_token)).read)["friends"]["data"]
+  end
+
 end

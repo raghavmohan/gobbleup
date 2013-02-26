@@ -19,7 +19,7 @@ html
     $(function(){
       $( "#slider" ).slider({
         change: function( event, ui ) {
-          $("#radius").val((ui.value));
+          $("#radius").val((1000*ui.value));
         }
       });
     });      
