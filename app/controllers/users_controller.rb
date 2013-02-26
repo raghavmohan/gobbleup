@@ -31,8 +31,17 @@ class UsersController < ApplicationController
     unless params[:fbid].nil?
       fbid=params[:fbid]
     end
-    website = JSON.parse(open(URI::escape(@@fburl+fbid+"?fields=website")).read)["website"]
-    redirect_to(website) 
+    about = JSON.parse(open(URI::escape(@@fburl+fbid)).read)
+    if(about["website"].nil?)
+      if(about["link"] != nil)
+        redirect_to(about["link"]) 
+      else
+        redirect_to :root
+      end
+    else
+      about["website"] = about["website"].gsub(/http:\/\//, "")
+      redirect_to(URI::escape("http://"+about["website"]))
+    end
   end
 
 

@@ -44,6 +44,7 @@ class EventsController < ApplicationController
 
       @location = []
       unless params[:fbid].nil?
+        @fblocurl = URI::escape(@@fburl+params[:fbid]+"")
         @location = JSON.parse(open(URI::escape(@@fburl+params[:fbid]+"")).read)
       end
 
