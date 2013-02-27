@@ -20,18 +20,18 @@ class User < ActiveRecord::Base
 
   def getFriends
     friends = JSON.parse(open(URI::escape("https://graph.facebook.com/"+self.uid+"?fields=id,name,friends&access_token="+self.oauth_token)).read)["friends"]["data"]
-    counter = 0
-    friends.each do |f|
-      if counter == 10
-        break
-      end
+    #counter = 0
+    #friends.each do |f|
+      #if counter == 10
+      #  break
+      #end
 
-      html = open(URI::escape("http://www.wisc.edu/search/live_directory.php?q="+f["name"])).read
-      r = Regexp.new(/\b[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}\b/)     
-      email = html.scan(r).uniq   
-      f["email"] = email
-      counter += 1
-    end
+      #html = open(URI::escape("http://www.wisc.edu/search/live_directory.php?q="+f["name"])).read
+      #r = Regexp.new(/\b[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}\b/)     
+      #email = html.scan(r).uniq   
+      #f["email"] = email
+      #counter += 1
+    #end
     return friends
   end
 

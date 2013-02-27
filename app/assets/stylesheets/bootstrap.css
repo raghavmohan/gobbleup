@@ -263,6 +263,7 @@ a:hover {
 }
 
 .row {
+  text-align:center;
   margin-left: -20px;
   *zoom: 1;
 }

@@ -1,5 +1,27 @@
 -if current_user == nil
-  .login
-    h2 Welcome to GobbleUP
-    p.text-error Please Login
-    img src="/assets/sandwich.jpg"
+  /h2.text-center
+    ' GobbleUp
+  #landing style="background-image:url(/assets/tostada.jpg);"
+    header.hero-unit style='width:1400px; height:200px;height: 324px;padding: 55px 620px 0 0;margin:0px;background:rgba(0,0,0,0.1); color:white;'
+      h2
+        ' Discover new places
+      ' With your favorite friends
+      br
+      br
+      a.btn.btn-primary.btn-large href="#" style="color:white;"
+        i.icon-facebook-sign.icon-2x style="padding-right:5px;"
+        ' Sign Up
+
+#myCarousel.carousel.slide style="height:800px;"
+  .carousel-inner style=""
+    .active.item
+      ' This is data 1
+    .item
+      ' This is data 2
+    .item
+      ' This is data 3
+
+  a.carousel-control.left href="#myCarousel" data-slide="prev"
+    '&lsaquo;
+  a.carousel-control.right href="#myCarousel" data-slide="next"
+    '&rsaquo;

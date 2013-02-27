@@ -25,12 +25,10 @@ html
         }
       });
     });      
-    //$(function() {
-    //  console.log($( "#slider" ).slider("values"));
-    //});
   =csrf_meta_tags
   body
     = render :partial => 'layouts/navbar'
     = flash[:message]
-    .container style="margin:70px;"
+    .container style="width:100%;"
       = yield
+
