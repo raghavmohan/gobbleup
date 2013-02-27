@@ -1,8 +1,12 @@
 - if current_user == nil
   .container-fluid.pull-right style="padding-top: 2px"
     .navbar-text
-      a href="auth/facebook"
-        img src="/assets/fb-login-button.png"
+      /ul.nav
+       li
+        a.btn-small href="auth/facebook" style="color:white;background-color:blue;"
+          i.icon-facebook-sign style="padding-right:15px;"
+          ' Sign In
+
 - else
   .container-fluid.pull-right
     ul.nav
@@ -11,5 +15,5 @@
       li
         =link_to raw('<i class="icon-cog icon-3x"></i>'), :controller => :users, :action => :edit, :id=>current_user.id
       li
-        a href="/signout"
+        a#hover href="/signout" data-trigger="Sign Out"
           i.icon-signout.icon-3x

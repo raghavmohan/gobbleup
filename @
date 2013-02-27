@@ -1,10 +1,11 @@
+<%= @checkbox.count %>
+<%= @checkbox.first %>
+
 <%= simple_form_for @event do |f| %>
 <% @event.location = @location["name"] %>
 <%= f.input :location, :as => :hidden, :input_html => { :value =>@event.location }%>
 <br/>
-<div style="height:400px; overflow:scroll;">
 <%= f.association :users,:label=>"Invite friends", :collection => @checkbox.map{|user| [raw(user.first), user.last]}, :as => :check_boxes %>
-</div>
 <br/>
 <%= f.button :submit %>
 <% end %>
