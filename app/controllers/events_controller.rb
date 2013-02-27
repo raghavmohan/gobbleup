@@ -34,13 +34,15 @@ class EventsController < ApplicationController
       @event.creator_id = current_user.id
       @potential_users = current_user.getFriends
       @checkbox = [[]]
+      t = User.first
       @potential_users.each do |u|
         unless u["name"].nil?
-          @checkbox << ['<img src="https://graph.facebook.com/'+u["id"]+'/picture"/>'+u["name"], u["id"]]
+          @checkbox << ['<img src="https://graph.facebook.com/'+u["id"]+'/picture"/>'+u["name"], t.id]
         end 
       end
       @checkbox.shift
 =begin
+      @checkbox.shift
       @potential_users.each do |u|
         t = User.where("uid"=>u["id"]).first
         unless t.nil?
@@ -81,7 +83,11 @@ class EventsController < ApplicationController
           @event.users.each do |u|
             PhoneGateway.send_text_message(u.phone_number, message)
           end
-          format.html { redirect_to @event, notice: 'Event was successfully created.' }
+          format.html { 
+            redirect_to current_user 
+            flash[:notice] = 'Event was successfully created.'
+          }
+          #format.html { redirect_to @event, notice: 'Event was successfully created.' }
           format.json { render json: @event, status: :created, location: @event }
         else
           format.html { render action: "new" }

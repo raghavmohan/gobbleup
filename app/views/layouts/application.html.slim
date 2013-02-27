@@ -25,12 +25,10 @@ html
         }
       });
     });      
-    //$(function() {
-    //  console.log($( "#slider" ).slider("values"));
-    //});
   =csrf_meta_tags
   body
     = render :partial => 'layouts/navbar'
-    = flash[:message]
     .container style="margin:70px;"
+      - unless flash[:notice].nil?
+        = raw('<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert">×</button>' + raw(flash[:notice]) +'</div>')
       = yield
