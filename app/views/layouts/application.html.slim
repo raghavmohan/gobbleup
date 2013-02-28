@@ -32,6 +32,7 @@ html
       - unless flash[:notice].nil?
         = raw('<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert">×</button>' + raw(flash[:notice]) +'</div>')
       = yield
+    .push
     #footer
       p.muted.credit
         ' Made By
