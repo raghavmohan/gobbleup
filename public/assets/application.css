@@ -14,7 +14,11 @@
 
 
 a:hover{background-color:transparent;}
-
+.extra-reason-container{
+  text-align:center;
+  padding:10px;
+  margin:15px;
+}
 /*!
  * Bootstrap Responsive v2.2.2
  *
@@ -1384,6 +1388,7 @@ a:hover {
 }
 
 .row {
+  text-align:center;
   margin-left: -20px;
   *zoom: 1;
 }
@@ -7077,13 +7082,14 @@ a.badge:hover {
   right: 15px;
   left: auto;
 }
-
+/*
 .carousel-control:hover {
   color: #ffffff;
   text-decoration: none;
   opacity: 0.9;
   filter: alpha(opacity=90);
 }
+*/
 
 .carousel-caption {
   position: absolute;
@@ -7156,6 +7162,11 @@ a.badge:hover {
 
 .affix {
   position: fixed;
+}
+
+
+#footer{
+  background-color:rgba(0,0,0,0.8);
 }
 /*!
  * Bootstrap v2.2.2

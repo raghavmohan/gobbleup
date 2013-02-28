@@ -80,10 +80,9 @@ class UsersController < ApplicationController
     unless params[:limit].nil?
       @limit = params[:limit]
     end
-    unless params[:genre].nil?
+    unless params[:genre].nil? or params[:genre].downcase == ""
       @genre = params[:genre]
     end
-    require 'open-uri'
     fbtokenurl = @@fburl+"oauth/access_token?client_id="+@@client_id+"&client_secret="+@@client_secret+"&grant_type=client_credentials"
     @@fbaccess_token = open(URI::escape(fbtokenurl)).read
     @fbmapsurl = "https://graph.facebook.com/search?q=#{@genre}&type=place&"+@@fbaccess_token+"&center="+@lat+","+@long+"&distance="+@radius+"&limit="+@limit

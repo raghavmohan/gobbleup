@@ -13,4 +13,8 @@
  */
 
 a:hover{background-color:transparent;}
-
+.extra-reason-container{
+  text-align:center;
+  padding:10px;
+  margin:15px;
+}

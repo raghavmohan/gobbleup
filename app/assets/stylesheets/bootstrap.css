@@ -5957,13 +5957,14 @@ a.badge:hover {
   right: 15px;
   left: auto;
 }
-
+/*
 .carousel-control:hover {
   color: #ffffff;
   text-decoration: none;
   opacity: 0.9;
   filter: alpha(opacity=90);
 }
+*/
 
 .carousel-caption {
   position: absolute;
@@ -6036,4 +6037,16 @@ a.badge:hover {
 
 .affix {
   position: fixed;
+}
+
+.push{
+  padding:250px 0px 0px 0px;
+}
+#footer{
+  height:50px;
+  color:white;
+  background-color:rgba(0,0,0,0.8);
+}
+#footer a{
+  color:white;
 }
