@@ -14,6 +14,11 @@
           ' Sign Up
 
 #myCarousel.carousel.slide style="height:400px;"
+  ol.carousel-indicators
+    li.active data-target="#myCarousel" data-slide-to="0"
+    li data-target="#myCarousel" data-slide-to="1"
+    li data-target="#myCarousel" data-slide-to="2"
+
   .carousel-inner style="height:400px;font-size:40px;"
     .active.item
       .extra-reason-container

@@ -5932,7 +5932,13 @@ a.badge:hover {
   left: 100%;
 }
 
-.carousel-control {
+a.carousel-control:hover {
+  text-decoration:none;
+  background-color:black;
+}
+
+
+.carousel-control{
   position: absolute;
   top: 40%;
   left: 15px;
