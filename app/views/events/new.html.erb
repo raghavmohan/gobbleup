@@ -1,9 +1,9 @@
 <% unless @location.nil? %>
-<h2>
+  <h2>
   Start a hangout at <%= @location["name"] %>
 </h2>
 <div class="container">
-    <% unless @location["cover"].nil? %>
+  <% unless @location["cover"].nil? %>
     <div class="cover-background" style="margin-left:auto;margin-right:auto;width:812px;color:white;background-image: url(<%= @location["cover"]["source"] %>);">
   <% end %>  
     <span class="badge badge-inverse" style="background:rgba(0,0,0,0.6); width:780px;margin:10px;">
@@ -17,10 +17,10 @@
       <br/>
       <br/>
       <iframe width="40%" height="150" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=<%=address %>&amp;aq=0&amp;oq=little&amp;z=12&amp;iwloc=A&amp;output=embed"></iframe>
-    <% end %> 
-      <% unless @location["cover"].nil? %>
-      </div>
-  <% end %>
-  </span>
+    </span>
+    <% unless @location["cover"].nil? %>
+    </div>
+    <% end %>
   <%= render 'form' %>
 </div>
+<% end %> 
