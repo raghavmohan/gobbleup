@@ -69,6 +69,11 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
   end
 
+
+  def split_message(message)
+    return message.scan /.{150}/
+  end
+
   # POST /events
   # POST /events.json
   def create
@@ -79,10 +84,27 @@ class EventsController < ApplicationController
       @event.creator = current_user
       respond_to do |format|
         if @event.save
-          message = current_user.name+" has invited you, to join them at "+@event.location+"!"
+          message = current_user.name+" has invited you, "
+          cu_message = "You invited "
+          @event.users.each do |u|
+            message += u.name+", "
+            cu_message += u.name+", "
+          end
+          message += "to join them at "+@event.location+"!"
+          cu_message += "to join you at "+@event.location+"!"
           @event.users.each do |u|
             PhoneGateway.send_text_message(u.phone_number, message)
+            #spm = split_message(message)
+            #spm.each do |m|
+            #  PhoneGateway.send_text_message(u.phone_number, m)
+            #end
           end
+          PhoneGateway.send_text_message(current_user.phone_number, cu_message)
+          #spmcu = split_message(cu_message)
+          #spmcu.each do |m|
+          #  PhoneGateway.send_text_message(current_user.phone_number, m)
+          #end
+          #PhoneGateway.send_text_message(current_user.phone_number, cu_message)
           format.html { 
             redirect_to current_user 
             flash[:notice] = 'Event was successfully created.'
