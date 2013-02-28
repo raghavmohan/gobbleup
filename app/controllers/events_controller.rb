@@ -34,6 +34,7 @@ class EventsController < ApplicationController
       @event.creator_id = current_user.id
       @potential_users = current_user.getFriends
       @checkbox = [[]]
+=begin
       t = User.first
       @potential_users.each do |u|
         unless u["name"].nil?
@@ -41,16 +42,15 @@ class EventsController < ApplicationController
         end 
       end
       @checkbox.shift
-=begin
-      @checkbox.shift
+=end
       @potential_users.each do |u|
         t = User.where("uid"=>u["id"]).first
         unless t.nil?
-          @checkbox << [u["name"], '<img src="https://graph.facebook.com/'+u["id"]+'/picture"', t.id]
+          @checkbox << ['<img src="https://graph.facebook.com/'+u["id"]+'/picture">'+u["name"], t.id]
         end
-        @checkbox.shift
       end
-=end
+
+      @checkbox.shift
       @location = []
       unless params[:fbid].nil?
         @fblocurl = URI::escape(@@fburl+params[:fbid]+"")
