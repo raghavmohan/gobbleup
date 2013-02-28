@@ -7,7 +7,7 @@
 <% else %>
     <div>
   <%end%>
-    <%= f.association :users,:label=>raw('<p>Choose from your Friends on Gobble<br/>Gobble will send an invitation via a text-message<br/><i class="icon-group icon-2x" style="padding:5px 35px 0px 0px;"></i><i class="icon-exchange icon-2x" style="padding:5px 35px 0px 0px;"></i><i class="icon-mobile-phone icon-2x" style="padding:5px 35px 0px 0px;"></i></p><br/>'), :collection => @checkbox.map{|user| [raw(user.first), user.last]}, :as => :check_boxes %>
+    <%= f.association :users,:label=>raw('<p>Invite your Friends on Gobble<br/>Gobble will send an invitation via a text-message<br/><i class="icon-group icon-2x" style="padding:5px 35px 0px 0px;"></i><i class="icon-exchange icon-2x" style="padding:5px 35px 0px 0px;"></i><i class="icon-mobile-phone icon-2x" style="padding:5px 35px 0px 0px;"></i></p><br/>'), :collection => @checkbox.map{|user| [raw(user.first), user.last]}, :as => :check_boxes %>
   </div>
   <br/>
   <%= f.button :submit, 'Invite' %>
