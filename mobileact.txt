@@ -1,8 +1,0 @@
-What to Measure - 
-  Forgettability
-
-Population - Everyone, narrow down to users who user vehicles or any mode of transp.
-
-Analyze - 
-  How well does it predict
-  Ease of use(for adding etc) 

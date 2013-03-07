@@ -4,10 +4,10 @@ class UsersController < ApplicationController
 
   ## This should be in Application Controller...
   @@fburl = "https://graph.facebook.com/"
-  @@authkey = "AIzaSyADf-Tno7s-r5aU0hY6-KDC2wapw8iKa4U"
+  @@authkey =
   @@gmapsurl = "https://maps.googleapis.com/maps/api/place/search/json?location="
-  @@client_id = "131364997031342"
-  @@client_secret = "44c516fb668a71852347686ec508cbef" 
+  @@client_id =
+  @@client_secret =
   @@fbaccess_token =""
   require 'open-uri'
 
